@@ -8,6 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: s4u/maven-settings-action@v2.8.0
         with:
           servers: |
@@ -16,7 +17,6 @@ jobs:
                 "username": "${{ secrets.NEXUS_USERNAME }}",
                 "password": "${{ secrets.NEXUS_PASSWORD }}"
             }]
-      - uses: actions/checkout@v2
       - name: Set up Java
         uses: actions/setup-java@v1
         with:
@@ -26,4 +26,4 @@ jobs:
       - name: show current directory
         run: pwd
       - name: Deploy to Nexus
-        run: mvn deploy -s file:/home/runner/work/rsql-jpa/rsql-jpa/.github/settings.xml
+        run: mvn deploy -s file:$GITHUB_WORKSPACE/.github/settings.xml
