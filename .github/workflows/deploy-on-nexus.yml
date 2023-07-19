@@ -24,6 +24,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean install -DskipTests
       - name: show current directory
-        run: cat .github/settings.xml
+        run: cat .m2/settings.xml
       - name: Deploy to Nexus
-        run: mvn deploy -s .github/settings.xml -DskipTests
+        run: mvn deploy -s .m2/settings.xml -DskipTests
