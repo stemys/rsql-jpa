@@ -14,6 +14,6 @@ jobs:
         with:
           java-version: 11
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -DskipTests
       - name: Deploy to Maven
         run: mvn deploy -s file:.github/settings.xml
