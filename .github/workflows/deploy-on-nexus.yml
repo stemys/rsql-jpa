@@ -23,7 +23,5 @@ jobs:
           java-version: 11
       - name: Build with Maven
         run: mvn clean install -DskipTests
-      - name: show current directory
-        run: find . -iname settings.xml -print
       - name: Deploy to Nexus
-        run: mvn deploy -s .m2/settings.xml -DskipTests
+        run: mvn deploy -s /home/runner/.m2/settings.xml -DskipTests
