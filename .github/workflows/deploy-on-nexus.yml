@@ -9,22 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: s4u/maven-settings-action@v2.8.0
+      - uses: cschleiden/replace-tokens@v1
         with:
-          githubServer: false
-          servers: |
-            [{
-                "id": "nexus-stemys",
-                "username": "${{ secrets.NEXUS_USERNAME }}",
-                "password": "${{ secrets.NEXUS_PASSWORD }}"
-            }]
+          files: '["**/settings.xml"]'
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
       - name: Set up Java
         uses: actions/setup-java@v1
         with:
           java-version: 11
       - name: show content
-        run: cat /home/runner/.m2/settings.xml
+        run: cat .github/settings.xml
       - name: Build with Maven
         run: mvn clean install -DskipTests
       - name: Deploy to Nexus
-        run: mvn deploy -s /home/runner/.m2/settings.xml -DskipTests
+        run: mvn deploy -s .github/settings.xml -DskipTests
