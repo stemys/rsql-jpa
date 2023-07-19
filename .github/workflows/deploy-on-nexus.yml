@@ -16,6 +16,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean install -DskipTests
       - name: show current directory
-        run: ls -a
+        run: pwd
       - name: Deploy to Maven
         run: mvn deploy -s file:.github/settings.xml
