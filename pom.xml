@@ -4,8 +4,7 @@
 
     <groupId>io.stemys</groupId>
     <artifactId>rsql-jpa</artifactId>
-<!--    <version>3.0.0</version>-->
-    <version>2.0.3-SNAPSHOT-STEMYS</version>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
 
     <!--//////////////////// ABOUT ////////////////////-->

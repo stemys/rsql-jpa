@@ -1,9 +1,8 @@
-# todo branche
 name: Publish to Nexus
 on:
   push:
     branches:
-      - migrate-javax-to-jakarta
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
