@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: show content
+        run: cat /home/runner/.m2/settings.xml
       - name: Build with Maven
         run: mvn clean install -DskipTests
       - name: Deploy to Nexus
