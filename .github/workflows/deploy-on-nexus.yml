@@ -18,4 +18,4 @@ jobs:
       - name: show current directory
         run: pwd
       - name: Deploy to Maven
-        run: mvn deploy -s file:.github/settings.xml
+        run: mvn deploy -s file:/home/runner/work/rsql-jpa/rsql-jpa/.github/settings.xml
