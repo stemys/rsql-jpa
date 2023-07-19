@@ -26,4 +26,4 @@ jobs:
       - name: show current directory
         run: pwd
       - name: Deploy to Nexus
-        run: mvn deploy -s file:$GITHUB_WORKSPACE/.github/settings.xml
+        run: mvn deploy -s .github/settings.xml
