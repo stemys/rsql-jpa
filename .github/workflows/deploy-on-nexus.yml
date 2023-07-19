@@ -1,0 +1,19 @@
+# todo branche
+name: Publish to Nexus
+on:
+  push:
+    branches:
+      - migrate-javax-to-jakarta
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Build with Maven
+        run: mvn clean install
+      - name: Deploy to Maven
+        run: mvn deploy -s file:.github/settings.xml
