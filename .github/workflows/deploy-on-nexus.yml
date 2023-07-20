@@ -1,0 +1,27 @@
+name: Publish to Nexus
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cschleiden/replace-tokens@v1
+        with:
+          files: .github/settings.xml
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      - name: show content
+        run: cat .github/settings.xml
+      - name: Build with Maven
+        run: mvn clean install
+      - name: Deploy to Nexus
+        run: mvn deploy -s .github/settings.xml
